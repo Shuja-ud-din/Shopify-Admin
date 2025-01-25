@@ -25,6 +25,7 @@ function App() {
           }
         />
         <Route path="/dashboard/*" element={<Navigate to="/" />} />
+        <Route path="/dashboard/users" element={<Navigate to="/" />} />
       </Routes>
     );
   }
