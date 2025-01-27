@@ -25,7 +25,10 @@ function App() {
           }
         />
         <Route path="/dashboard/*" element={<Navigate to="/" />} />
-        <Route path="/dashboard/users" element={<Navigate to="/" />} />
+        <Route path="/dashboard/users" element={<Navigate to="/users" />} />
+        <Route path="/dashboard/orders" element={<Navigate to="/orders" />} />
+        <Route path="/dashboard/products" element={<Navigate to="/products" />} />
+        <Route path="/dashboard/settings" element={<Navigate to="/settings" />} />
       </Routes>
     );
   }

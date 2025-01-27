@@ -58,7 +58,7 @@ const orders: Order[] = [
   },
 ];
 
-const Users: React.FC = () => {
+const Products: React.FC = () => {
   return (
     <div>
       <main className="flex-1 overflow-y-auto p-4 sm:p-6">
@@ -135,7 +135,7 @@ const Users: React.FC = () => {
   );
 };
 
-export default Users;
+export default Products;
 
 const MoveHorizontalIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
