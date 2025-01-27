@@ -1,5 +1,6 @@
 import { LoginForm } from '@/components/LoginForm';
 import { GalleryVerticalEnd } from 'lucide-react';
+import login_bg from '@/assets/images/login.svg';
 
 const LoginPage = () => {
   return (
@@ -19,12 +20,14 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-      <div className="relative hidden bg-muted lg:block">
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        />
+      <div className="relative hidden bg-[#f9fafb] lg:flex lg:items-center lg:justify-center">
+        <div className="w-[60%]">
+          <img
+            src={login_bg}
+            alt="Image"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );
