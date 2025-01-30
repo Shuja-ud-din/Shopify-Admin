@@ -1,5 +1,5 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
+import React from 'react';
+import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,11 +7,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import Admin from "../../assets/Admin.jpg";
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import Admin from '../../assets/Admin.jpg';
+import { useLogout } from '@/hooks/auth';
 
 const Header: React.FC = () => {
+  const { logout } = useLogout();
   return (
     <header className="text-gray-600 body-font p-4 border-b border-gray-300">
       <div className="container mx-auto flex justify-between">
@@ -26,7 +28,7 @@ const Header: React.FC = () => {
             <form className="relative">
               <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
-                type="search"
+                type="text"
                 placeholder="Search orders..."
                 className="pl-8 sm:w-[300px] md:w-[400px]"
               />
@@ -42,7 +44,7 @@ const Header: React.FC = () => {
                   height={36}
                   className="rounded-full"
                   alt="Admin Avatar"
-                  style={{ aspectRatio: "1", objectFit: "cover" }}
+                  style={{ aspectRatio: '1', objectFit: 'cover' }}
                 />
                 <span className="sr-only">Toggle user menu</span>
               </Button>
@@ -53,7 +55,9 @@ const Header: React.FC = () => {
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => logout()}>
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
