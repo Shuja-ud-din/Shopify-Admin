@@ -9,14 +9,14 @@ import Settings from '@/pages/dashboard/Settings';
 const Dashboard = () => {
   return (
     <>
-    <DashboardLayout>
-      <Routes>
-        <Route path="/" element={<Overview />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/products" element={<Products/>}  />
-        <Route path="/orders" element={<Orders />} />
-        <Route path='/settings' element={<Settings/>} />
-      </Routes>
+      <DashboardLayout>
+        <Routes>
+          <Route path="/" element={<Overview />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </DashboardLayout>
     </>
   );
