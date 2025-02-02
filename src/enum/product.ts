@@ -1,6 +1,5 @@
 export enum ShopifyProductStatus {
-    DRAFT = 'draft',
-    ACTIVE = 'active',
-    ARCHIVED = 'archived',
-  }
-  
+  DRAFT = 'draft',
+  ACTIVE = 'active',
+  ARCHIVED = 'archived',
+}
