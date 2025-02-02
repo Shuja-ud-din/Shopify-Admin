@@ -1,5 +1,6 @@
-import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
+import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Group } from 'lucide-react';
 
 const MountainIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
@@ -85,23 +86,6 @@ const PackageIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-const ShoppingCartIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="8" cy="21" r="1" />
-    <circle cx="19" cy="21" r="1" />
-    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-  </svg>
-);
-
 const SettingsIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
@@ -120,11 +104,27 @@ const SettingsIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 const Sidebar: FC = () => {
   const navItems = [
-    { to: "/", label: "Overview", icon: <HomeIcon className="h-5 w-5" /> },
-    { to: "/dashboard/users", label: "Users", icon: <UsersIcon className="h-5 w-5" /> },
-    { to: "/dashboard/products", label: "Products", icon: <PackageIcon className="h-5 w-5" /> },
-    { to: "/dashboard/orders", label: "Orders", icon: <ShoppingCartIcon className="h-5 w-5" /> },
-    { to: "/dashboard/settings", label: "Settings", icon: <SettingsIcon className="h-5 w-5" /> },
+    { to: '/', label: 'Overview', icon: <HomeIcon className="h-5 w-5" /> },
+    {
+      to: '/dashboard/users',
+      label: 'Users',
+      icon: <UsersIcon className="h-5 w-5" />,
+    },
+    {
+      to: '/dashboard/products',
+      label: 'Products',
+      icon: <PackageIcon className="h-5 w-5" />,
+    },
+    {
+      to: '/dashboard/products-groups',
+      label: 'Products Groups',
+      icon: <Group className="h-5 w-5" />,
+    },
+    {
+      to: '/dashboard/settings',
+      label: 'Settings',
+      icon: <SettingsIcon className="h-5 w-5" />,
+    },
   ];
 
   return (
@@ -133,7 +133,9 @@ const Sidebar: FC = () => {
         <div className="flex h-16 items-center justify-between px-4 sm:px-6">
           <NavLink to="#" className="flex items-center gap-2">
             <MountainIcon className="h-6 w-6" />
-            <span className="hidden text-lg font-semibold sm:block">Acme Inc</span>
+            <span className="hidden text-lg font-semibold sm:block">
+              Acme Inc
+            </span>
           </NavLink>
           <button className="rounded-md p-2 hover:bg-accent sm:hidden">
             <MenuIcon className="h-6 w-6" />
@@ -149,13 +151,15 @@ const Sidebar: FC = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-4 rounded-md px-3 py-2 transition-colors ${
                     isActive
-                      ? "bg-accent text-accent-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                      ? 'bg-accent text-accent-foreground'
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                   }`
                 }
               >
                 {icon}
-                <span className="hidden text-sm font-medium sm:block">{label}</span>
+                <span className="hidden text-sm font-medium sm:block">
+                  {label}
+                </span>
               </NavLink>
             ))}
           </div>
