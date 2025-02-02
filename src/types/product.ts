@@ -20,7 +20,21 @@ export interface IProduct {
   updatedAt: Date;
 }
 
+export interface IUpdateProductRequest {
+  id: string;
+  urls: string[];
+}
+
 export interface IGetAllProductsResponse extends IAPIResponse {
   products: IProduct[];
 }
+
+export interface IGetProductResponse extends IAPIResponse {
+  product: IProduct;
+}
+
 export type TGetAllProducts = () => Promise<IGetAllProductsResponse>;
+export type TGetProduct = (id: string) => Promise<IGetProductResponse>;
+export type TUpdateProduct = (
+  payload: IUpdateProductRequest,
+) => Promise<IGetProductResponse>;
