@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { Formik } from 'formik';
 import { ILoginPayload } from '@/types/auth';
-import { loginSchema } from '@/validations/auth';
+import { LoginSchema } from '@/validations/auth';
 import { useLogin } from '@/hooks/auth';
 import { Env } from '@/lib/Env';
 
@@ -26,7 +26,7 @@ export function LoginForm() {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={loginSchema}
+      validationSchema={LoginSchema}
     >
       {({
         handleSubmit,

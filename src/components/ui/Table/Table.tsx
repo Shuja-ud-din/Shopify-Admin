@@ -1,9 +1,9 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
-import "./Table.css";
-import TableSearchBar from "./TableSearchBar";
-import { useNavigate } from "react-router-dom";
-import Pagination from "./Pagination";
-import { Skeleton } from "@mui/material";
+import React, { useEffect, useState, ChangeEvent } from 'react';
+import './Table.css';
+import TableSearchBar from './TableSearchBar';
+import { useNavigate } from 'react-router-dom';
+import Pagination from './Pagination';
+import { Skeleton } from '@mui/material';
 
 import {
   Table,
@@ -12,7 +12,7 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 interface TableProps {
   array: any[];
@@ -40,7 +40,7 @@ const MainTable: React.FC<TableProps> = ({
   search,
   routes = [],
 }) => {
-  const [searchedData, setSearchedData] = useState<string>("");
+  const [searchedData, setSearchedData] = useState<string>('');
   const navigate = useNavigate();
   const [noOfRecordsPerPage, setNoOfRecordsPerPage] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -50,10 +50,10 @@ const MainTable: React.FC<TableProps> = ({
       array &&
         array.filter((obj) => {
           return (
-            searchedData === "" ||
+            searchedData === '' ||
             obj[search!].toLowerCase().includes(searchedData.toLowerCase())
           );
-        })
+        }),
     );
   }, [searchedData]);
 
@@ -86,22 +86,16 @@ const MainTable: React.FC<TableProps> = ({
         )}
         {filter && filter()}
       </div>
-      <div className="bg-[transparent] rounded-[9px] border border-[#c4c4c4] shadow-lg overflow-auto scrollbar-custom">
+      <div className="">
         <Table className="w-full">
-          <TableHeader className="rounded-tr-[9px] rounded-tl-[9px]">
-            <TableRow className="uppercase border-b border-[#c4c4c4]">
+          <TableHeader>
+            <TableRow>
               {label.map((text, index) => {
                 return (
                   <TableHead
                     key={index}
-                    className={`py-4 bg-[#F9FAFB] font-[600] text-[15px] text-[#1D2939] whitespace-nowrap 
-                        ${
-                          index === label.length - 1
-                            ? "text-right pr-9 rounded-tr-[9px]"
-                            : index === 0
-                            ? "text-left pl-9 rounded-tl-[9px]"
-                            : "text-left pl-9"
-                        }
+                    className={`
+                       ${index === label.length - 1 ? 'text-right pr-9' : ''}
                         `}
                   >
                     {text}
@@ -120,7 +114,7 @@ const MainTable: React.FC<TableProps> = ({
                       onClick={() => {
                         if (setRecord) setRecord(obj);
                       }}
-                      className="cursor-pointer hover:bg-[#D0D5DD] border-b border-[#F2F2F2]"
+                      className="cursor-pointer "
                     >
                       {keysToDisplay.map((key, index) => {
                         const blocksList = renderComponent(index, customBlocks);
@@ -131,11 +125,11 @@ const MainTable: React.FC<TableProps> = ({
                               if (routes.length > 0)
                                 navigate(`${routes[0]}/${obj.id}`);
                             }}
-                            className={`py-4 font-[400] text-[14px] text-[#858992] text-left pl-9 whitespace-nowrap ${
-                              index === label.length - 1
-                                ? "text-right pr-9"
-                                : "text-left pl-9"
-                            }`}
+                            // className={`py-4 font-[400] text-[14px] text-[#858992] text-left pl-9 whitespace-nowrap ${
+                            //   index === label.length - 1
+                            //     ? 'text-right pr-9'
+                            //     : 'text-left pl-9'
+                            // }`}
                           >
                             {blocksList
                               ? blocksList.component(key ? obj[key] : obj)

@@ -7,10 +7,14 @@ import { Label } from './label';
 
 type IProps = {
   value?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  onBlur?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   placeholder?: string;
-  type?: 'text' | 'password' | 'email' | 'number';
+  type?: 'text' | 'password' | 'email' | 'number' | 'textarea';
   className?: string;
   label?: string;
   name?: string;
@@ -21,9 +25,11 @@ type IProps = {
   icon?: React.ReactNode;
   inlineLabel?: boolean;
   id?: string;
+  rows?: number;
+  cols?: number;
 };
 
-const Input = React.forwardRef<HTMLInputElement, IProps>(
+const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
   ({
     value,
     onChange,
@@ -40,12 +46,60 @@ const Input = React.forwardRef<HTMLInputElement, IProps>(
     icon,
     inlineLabel,
     id,
+    rows = 3,
+    cols = 20,
   }: IProps) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const errorMessage = helperText && error && (
       <p className={`mt-1 text-sm text-red-500 ${className} `}>{helperText}</p>
     );
+
+    if (type === 'textarea') {
+      return (
+        <div
+          className={clsx(
+            'flex w-full flex-col',
+            inlineLabel && 'x-md:flex-row x-md:items-center x-md:gap-4',
+            className,
+          )}
+        >
+          {label && (
+            <Label htmlFor={id} className="mb-2">
+              {label}
+            </Label>
+          )}
+
+          <div className={clsx(inlineLabel && 'md:w-full')}>
+            <div
+              className={clsx(
+                'flex  w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ',
+                inlineLabel && 'md:w-full',
+                !readOnly && 'focus-within:border-primary',
+                error ? '!border-red-500' : 'border-subtle',
+              )}
+            >
+              <textarea
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                placeholder={placeholder}
+                rows={rows}
+                cols={cols}
+                className={`w-full peer text-sm leading-6 text-dark outline-none placeholder:text-sm placeholder:text-subtle lg:text-base lg:placeholder:text-base `}
+                name={name}
+                required={required}
+                readOnly={readOnly}
+              />
+            </div>
+
+            {inlineLabel && errorMessage}
+          </div>
+
+          {!inlineLabel && errorMessage}
+        </div>
+      );
+    }
 
     return (
       // <input

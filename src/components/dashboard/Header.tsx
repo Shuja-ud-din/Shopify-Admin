@@ -9,8 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import Admin from '../../assets/Admin.jpg';
 import { useLogout } from '@/hooks/auth';
+import { User } from 'lucide-react';
 
 const Header: React.FC = () => {
   const { logout } = useLogout();
@@ -38,14 +38,7 @@ const Header: React.FC = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <img
-                  src={Admin}
-                  width={36}
-                  height={36}
-                  className="rounded-full"
-                  alt="Admin Avatar"
-                  style={{ aspectRatio: '1', objectFit: 'cover' }}
-                />
+                <User className="h-6 w-6" fontSize={30} />
                 <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
