@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { Spin } from 'antd';
 
 const ProductDetail = () => {
   const [urls, setUrls] = useState<string[]>([]);
 
   const { id } = useParams<{ id: string }>();
 
-  const { product } = useGetProduct(id as string);
+  const { product, isLoading: isProductLoading } = useGetProduct(id as string);
   const { updateProduct, isLoading } = useUpdateProductUrls();
 
   const handleUrlChange = (index: number, value: string) => {
@@ -38,6 +39,14 @@ const ProductDetail = () => {
       setUrls(product.scrapperUrls);
     }
   }, [product]);
+
+  if (isProductLoading) {
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full flex">

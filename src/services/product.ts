@@ -15,7 +15,7 @@ export const getAllProducts: TGetAllProducts = async () => {
 };
 
 export const getProduct: TGetProduct = async (id) => {
-  const { data } = await api.get(`/api/products/${id}`);
+  const { data } = await api.get(`/api/products/details/${id}`);
 
   return data;
 };
