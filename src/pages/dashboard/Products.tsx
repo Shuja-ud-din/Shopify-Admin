@@ -55,13 +55,7 @@ const Products: React.FC = () => {
                 "updatedAt",
                 "status",
               ]}
-              // extraColumns={[
-              //   (employeeObject)=>{
-              //     return <MdEdit 
-              //                onClick={}
-              //               size={20} />
-              //     }
-              // ]}
+             
               customBlocks={[
                 {
                   index: 1,

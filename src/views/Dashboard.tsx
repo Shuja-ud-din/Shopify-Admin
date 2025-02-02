@@ -5,6 +5,7 @@ import Orders from '@/pages/dashboard/Orders';
 import { Route, Routes } from 'react-router-dom';
 import Products from '@/pages/dashboard/Products';
 import Settings from '@/pages/dashboard/Settings';
+import ProductDetail from '@/pages/dashboard/ProductDetail';
 
 const Dashboard = () => {
   return (
@@ -14,6 +15,7 @@ const Dashboard = () => {
           <Route path="/" element={<Overview />} />
           <Route path="/users" element={<Users />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/details/:id" element={<ProductDetail />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
