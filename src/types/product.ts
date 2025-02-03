@@ -2,6 +2,7 @@ import { ShopifyProductStatus } from '@/enum/product';
 import { IAPIResponse } from './api';
 
 export interface IProduct {
+  id: string;
   shopifyProductId: number;
   title: string;
   bodyHtml: string;
@@ -26,7 +27,7 @@ export interface IUpdateProductRequest {
 }
 
 export interface IProductGroup {
-  id: number;
+  id: string;
   name: string;
   description: string;
   tags: string[];
@@ -44,6 +45,11 @@ export interface ICreateProductGroupPayload {
   tags: string[];
 }
 
+export interface IUpdateProductGroupPayload {
+  id: string;
+  payload: ICreateProductGroupPayload;
+}
+
 export interface IGetAllProductGroupsResponse extends IAPIResponse {
   productGroups: IProductGroup[];
 }
@@ -54,6 +60,10 @@ export interface IGetAllTags extends IAPIResponse {
 
 export interface IGetAllProductsResponse extends IAPIResponse {
   products: IProduct[];
+}
+
+export interface IGetProductGroupResponse extends IAPIResponse {
+  productGroup: IProductGroup;
 }
 
 export interface IGetProductResponse extends IAPIResponse {
@@ -67,6 +77,13 @@ export type TUpdateProduct = (
 ) => Promise<IGetProductResponse>;
 export type TGetAllTags = () => Promise<IGetAllTags>;
 export type TGetAllProductGroups = () => Promise<IGetAllProductGroupsResponse>;
+export type TGetProductGroup = (
+  id: string,
+) => Promise<IGetProductGroupResponse>;
 export type TCreateProductGroup = (
   payload: ICreateProductGroupPayload,
+) => Promise<IAPIResponse>;
+export type TDeleteProductGroup = (id: string) => Promise<IAPIResponse>;
+export type TUpdateProductGroup = (
+  payload: IUpdateProductGroupPayload,
 ) => Promise<IAPIResponse>;

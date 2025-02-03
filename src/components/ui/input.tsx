@@ -86,7 +86,7 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
                 placeholder={placeholder}
                 rows={rows}
                 cols={cols}
-                className={`w-full peer text-sm leading-6 text-dark outline-none placeholder:text-sm placeholder:text-subtle lg:text-base lg:placeholder:text-base `}
+                className={`w-full peer text-sm leading-6 text-dark outline-none placeholder:text-sm bg-transparent placeholder:text-subtle lg:text-base lg:placeholder:text-base `}
                 name={name}
                 required={required}
                 readOnly={readOnly}
@@ -144,7 +144,7 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, IProps>(
               onChange={onChange}
               onBlur={onBlur}
               placeholder={placeholder}
-              className={`${type === 'password' ? 'w-[95%]' : 'w-full'}  peer text-sm leading-6 text-dark outline-none placeholder:text-sm placeholder:text-subtle lg:text-base lg:placeholder:text-base `}
+              className={`${type === 'password' ? 'w-[95%]' : 'w-full'}  peer text-sm leading-6 text-dark outline-none placeholder:text-sm bg-transparent placeholder:text-subtle lg:text-base lg:placeholder:text-base `}
               name={name}
               required={required}
               readOnly={readOnly}

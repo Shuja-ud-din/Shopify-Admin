@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -6,15 +6,23 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card';
-import { useGetAllProductGroups } from '@/hooks/product';
+import { useDeleteProductGroup, useGetAllProductGroups } from '@/hooks/product';
 import Table from '@/components/ui/Table/Table';
 import { Button } from '@/components/ui/button';
 import { EditIcon, Plus, TrashIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Alert from '@/components/Alert';
+import { IProductGroup } from '@/types/product';
 
 const ProductGroups: React.FC = () => {
   const navigate = useNavigate();
   const { productGroups } = useGetAllProductGroups();
+  const { deleteProductGroup, isLoading } = useDeleteProductGroup();
+
+  const [open, setOpen] = useState<boolean>(false);
+  const [id, setId] = useState<string | null>(null);
+
+  const toggleAlert = () => setOpen(!open);
 
   return (
     <main className="flex-1 overflow-y-auto p-4 sm:p-6">
@@ -94,12 +102,13 @@ const ProductGroups: React.FC = () => {
                 },
               ]}
               extraColumns={[
-                () => (
+                (productGroup: IProductGroup) => (
                   <div className="flex gap-2">
                     <Button
                       variant="ghost"
                       className=" rounded-full"
                       size="icon"
+                      onClick={() => navigate(`edit/${productGroup.id}`)}
                     >
                       <EditIcon className="h-5 w-5" />
                     </Button>
@@ -107,6 +116,10 @@ const ProductGroups: React.FC = () => {
                       className=" rounded-full"
                       variant="ghost"
                       size="icon"
+                      onClick={() => {
+                        setId(productGroup.id);
+                        toggleAlert();
+                      }}
                     >
                       <TrashIcon color="red" className="h-5 w-5" />
                     </Button>
@@ -114,10 +127,26 @@ const ProductGroups: React.FC = () => {
                 ),
               ]}
               key="id"
+              routes={['details']}
             />
           </CardContent>
         </Card>
       </div>
+
+      <Alert
+        open={open}
+        title="Delete Product Group"
+        onCancel={toggleAlert}
+        isLoading={isLoading}
+        onConfirm={() => {
+          if (id) {
+            deleteProductGroup(id).finally(() => {
+              toggleAlert();
+            });
+          }
+        }}
+        description="Are you sure you want to delete this product group?"
+      />
     </main>
   );
 };

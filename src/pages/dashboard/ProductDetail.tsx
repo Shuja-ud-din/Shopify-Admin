@@ -51,14 +51,14 @@ const ProductDetail = () => {
   return (
     <div className="w-full h-full flex">
       <div className="w-[40%] border-r border-gray-300 flex    flex-col items-center  pt-[5rem]">
-        <div className="w-[90%] h-[25rem]  rounded-xl shadow-lg">
+        <div className="w-[90%] h-[25rem]  rounded-xl shadow-lg bg-white">
           <img
             src={product?.image}
             alt="Product"
             className="w-full h-full object-contain"
           />
         </div>
-        <div className="flex w-[90%] flex-col mt-[2rem]  gap-2 px-4 py-2 border rounded-md shadow-sm bg-gray-50">
+        <div className="flex w-[90%] flex-col mt-[2rem]  gap-2 px-4 py-2 border rounded-md shadow-sm bg-white">
           <p className="text-gray-700 font-medium flex justify-between">
             <span>Type: </span>
             <span className="font-semibold">{product?.productType}</span>
@@ -100,7 +100,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="w-[60%] flex flex-col  px-10 pt-[5rem] justify-between">
+      <div className="w-[60%] flex flex-col  px-10 pt-[5rem] justify-between bg-white h-full">
         <div>
           <div className="w-full flex items-center justify-between">
             <h1 className="text-[2.5rem] font-bold ">{product?.title}</h1>
